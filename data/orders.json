@@ -1,0 +1,38 @@
+[
+    { 
+        "id": 101, 
+        "clientId": 1, 
+        "status": "Livrée", 
+        "date": "2026-10-10", 
+        "items": [ { "platId": 1, "quantite": 2 } ] 
+    },
+     { 
+        "id": 104, 
+        "clientId": 3, 
+        "status": "Livrée", 
+        "date": "2026-10-13", 
+        "items": [ { "platId": 4, "quantite": 2 }, { "platId": 8, "quantite": 1 } ] 
+    },
+      { 
+        "id": 105, 
+        "clientId": 4, 
+        "status": "En attente", 
+        "date": "2026-10-14", 
+        "items": [ { "platId": 5, "quantite": 1 } ] 
+    },
+    { 
+        "id": 102, 
+        "clientId": 2, 
+        "status": "En attente", 
+        "date": "2026-10-11", 
+        "items": [ { "platId": 3, "quantite": 1 }, { "platId": 7, "quantite": 2 } ] 
+    },
+    { 
+        "id": 103, 
+        "clientId": 1, 
+        "status": "Annulée", 
+        "date": "2026-10-12", 
+        "items": [ { "platId": 2, "quantite": 1 } ] 
+    }
+    
+]

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Délice Restaurant</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="page-header">
+        <div class="container">
+            <div class="header-row">
+                <div>
+                    <h1 class="brand-title"> Délice Restaurant</h1>
+                    <p class="brand-sub">Gestion du menu et des commandes</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        
+        <!-- INDICATEURS -->
+        <section class="row g-3 mb-5">
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="bi bi-egg-fried"></i></div>
+                    <p class="stat-label">Plats</p>
+                    <h2 id="totalItems" class="stat-value">0</h2>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="bi bi-check-circle-fill"></i></div>
+                    <p class="stat-label">Disponibles</p>
+                    <h2 id="availableItems" class="stat-value">0</h2>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="bi bi-folder-fill"></i></div>
+                    <p class="stat-label">Catégories</p>
+                    <h2 id="categoryCount" class="stat-value">0</h2>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="bi bi-coin"></i></div>
+                    <p class="stat-label">Prix moyen</p>
+                    <h2 id="averagePrice" class="stat-value">0 DH</h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- RECHERCHE -->
+        <section class="mb-4">
+            <label for="searchInput" class="form-label fw-semibold">Rechercher un plat</label>
+            <input type="text" id="searchInput" class="form-control search-input"
+                placeholder="Exemple : Pizza Margherita">
+        </section>
+
+        <!-- FILTRES CATÉGORIE -->
+        <section class="mb-4">
+            <p class="fw-semibold mb-3">Catégorie</p>
+            <div class="d-flex flex-wrap gap-2">
+                <button id="btnAll" class="btn btn-dark category-btn">Tous</button>
+                <button class="btn btn-outline-dark category-btn" data-category="Pizza">Pizza</button>
+                <button class="btn btn-outline-dark category-btn" data-category="Burger">Burger</button>
+                <button class="btn btn-outline-dark category-btn" data-category="Salade">Salade</button>
+                <button class="btn btn-outline-dark category-btn" data-category="Dessert">Dessert</button>
+            </div>
+            <div class="form-check mt-3">
+                <input type="checkbox" id="availableOnly" class="form-check-input">
+                <label for="availableOnly" class="form-check-label">
+                    Afficher uniquement les plats disponibles
+                </label>
+            </div>
+        </section>
+
+        <!-- FILTRES COMMANDE -->
+        <section class="mb-5">
+            <p class="fw-semibold mb-3">Statut des commandes</p>
+            <div class="d-flex flex-wrap gap-2">
+                <button class="btn btn-outline-dark status-btn" data-status="all">Toutes</button>
+                <button class="btn btn-outline-dark status-btn" data-status="Livrée">Livrées</button>
+                <button class="btn btn-outline-dark status-btn" data-status="En attente">En attente</button>
+                <button class="btn btn-outline-dark status-btn" data-status="Annulée">Annulées</button>
+            </div>
+        </section>
+
+        <!-- CATÉGORIES -->
+        <section class="mb-5">
+            <h2 class="section-title">Nos catégories</h2>
+            <div class="row g-3">
+                <div class="col-6 col-md-3">
+                    <div class="category-card">
+                        <div class="category-icon"><i class="bi bi-pizza"></i></div>
+                        <h5>Pizza</h5>
+                        <p id="pizzaCount" class="text-muted mb-0">0 plats</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="category-card">
+                        <div class="category-icon"><i class="bi bi-egg-fried"></i></div>
+                        <h5>Burger</h5>
+                        <p id="burgerCount" class="text-muted mb-0">0 plats</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="category-card">
+                        <div class="category-icon"><i class="bi bi-basket"></i></div>
+                        <h5>Salade</h5>
+                        <p id="saladeCount" class="text-muted mb-0">0 plats</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="category-card">
+                        <div class="category-icon"><i class="bi bi-cake2"></i></div>
+                        <h5>Dessert</h5>
+                        <p id="dessertCount" class="text-muted mb-0">0 plats</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="errorMessage" class="alert alert-danger d-none">
+             Impossible de charger les données.
+        </div>
+        
+        <p id="resultCount" class="result-count">Chargement...</p>
+
+        <!-- MENU -->
+        <section>
+            <h2 class="section-title">Notre menu</h2>
+            <div id="menuContainer" class="row g-4"></div>
+            <p id="noResults" class="text-center text-muted d-none mt-4">
+                Aucun plat ne correspond à votre recherche.
+            </p>
+        </section>
+
+        <!-- COMMANDES -->
+        <section class="mt-5">
+            <h2 class="section-title">Nos Commandes</h2>
+            <div id="ordersContainer" class="row g-4"></div>
+        </section>
+
+    </main>
+
+    <!-- MODAL -->
+    <div class="modal fade" id="itemModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content app-modal">
+                <div class="modal-header">
+                    <h2 id="modalTitle" class="modal-title fs-5">Détail du plat</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img id="modalImage" class="modal-image" src="" alt="">
+                    <div class="modal-content-body">
+                        <p><strong>Plat :</strong> <span id="modalName"></span></p>
+                        <p><strong>Catégorie :</strong> <span id="modalCategory"></span></p>
+                        <p><strong>Prix :</strong> <span id="modalPrice"></span></p>
+                        <p><strong>Disponibilité :</strong> <span id="modalAvailable"></span></p>
+                        <p class="mb-1"><strong>Description :</strong></p>
+                        <p id="modalDescription" class="text-muted"></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/app.js"></script>
+
+</body>
+
+</html>

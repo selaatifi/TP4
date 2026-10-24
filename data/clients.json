@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "nom": "Sara Bennani",
+        "email": "sara.bennani@email.com",
+        "ville": "Casablanca"
+    },
+    {
+        "id": 2,
+        "nom": "Yassine El Amrani",
+        "email": "yassine.amrani@email.com",
+        "ville": "Rabat"
+    },
+    {
+        "id": 3,
+        "nom": "Amine Tazi",
+        "email": "amine.tazi@email.com",
+        "ville": "Marrakech"
+    },
+    {
+        "id": 4,
+        "nom": "Salma Idrissi",
+        "email": "salma.idrissi@email.com",
+        "ville": "Fès"
+    },
+    {
+        "id": 5,
+        "nom": "Omar Benjelloun",
+        "email": "omar.benjelloun@email.com",
+        "ville": "Tanger"
+    },
+    {
+        "id": 6,
+        "nom": "Imane Chraibi",
+        "email": "imane.chraibi@email.com",
+        "ville": "Agadir"
+    }
+]
